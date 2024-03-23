@@ -5,7 +5,7 @@ async function main() {
     const channel = await connection.createChannel();
 
     const queueName = 'hola';
-    const message = 'MENSAJE DE JAVASCRIPT!';
+    const message = 'Mensaje de Javascript';
 
     await channel.assertQueue(queueName, { durable: true });
     await channel.sendToQueue(queueName, Buffer.from(message), { persistent: true });
