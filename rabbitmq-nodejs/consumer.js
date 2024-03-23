@@ -4,7 +4,7 @@ async function main() {
     const connection = await amqp.connect('amqp://localhost');
     const channel = await connection.createChannel();
 
-    const queueName = 'hello';
+    const queueName = 'hola';
 
     await channel.assertQueue(queueName, { durable: true }); 
     console.log('[*] Waiting for messages. To exit, press CTRL+C');
