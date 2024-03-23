@@ -4,7 +4,7 @@ async function main() {
     const connection = await amqp.connect('amqp://localhost');
     const channel = await connection.createChannel();
 
-    const queueName = 'HOLA DESDE JAVASCRIPT';
+    const queueName = 'hola';
     const message = 'MENSAJE DE JAVASCRIPT!';
 
     await channel.assertQueue(queueName, { durable: true });
