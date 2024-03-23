@@ -1,15 +1,14 @@
 import pika
 
-def callback(ch, method, properties, body):
-    print(f"[x] Received {body}")
-
 connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
 channel = connection.channel()
 
-queue_name = 'hello'
+queue_name = 'MENSAJE DE PYTHON'
+message = 'HOLA JAVASCRIPT DESDE PYTHON!'
+
 channel.queue_declare(queue=queue_name, durable=True)  # Establece durable en True
+channel.basic_publish(exchange='', routing_key=queue_name, body=message, properties=pika.BasicProperties(delivery_mode=2))  # Establece delivery_mode en 2
 
-print("[*] Waiting for messages. To exit, press CTRL+C")
-channel.basic_consume(queue=queue_name, on_message_callback=callback, auto_ack=True)
+print(f"[x] Sent '{message}'")
 
-channel.start_consuming()
+connection.close()
