@@ -6,7 +6,7 @@ def callback(ch, method, properties, body):
 connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
 channel = connection.channel()
 
-queue_name = 'hello'
+queue_name = 'mensaje python'
 channel.queue_declare(queue=queue_name, durable=True)  # Establece durable en True
 
 print("[*] Waiting for messages. To exit, press CTRL+C")
